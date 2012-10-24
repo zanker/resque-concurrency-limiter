@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.files        = Dir.glob("lib/**/*") + %w[LICENSE README.md Rakefile]
   s.require_path = "lib"
 
-  s.add_runtime_dependency "resque", "~>1.23.0"
+  s.add_runtime_dependency "resque", ">=1.20.0"
 
   s.add_development_dependency "rspec", "~>2.11.0"
 end

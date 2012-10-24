@@ -1,6 +1,6 @@
 Resque Concurrency Limiter
 ===
-Tested against Resque 1.23.0.
+Tested against Resque 1.22.0.
 
 Only let's one job run at a time, and limits how many of the same job can be queued at a time.
 
