@@ -5,6 +5,11 @@ module Resque
         @queue_limit || 1
       end
 
+      # By default, expire the incr/decr key 3 hours after it's last used
+      def queue_lock_expiration
+        60 * 60 * 3
+      end
+
       def concurrency_key(type, *args)
         "conc-#{type}:#{name}-#{args.to_s}"
       end
@@ -19,6 +24,7 @@ module Resque
         normalized = Resque.decode(Resque.encode(args))
         key = concurrency_key("lock", normalized)
 
+        Resque.redis.expireat(key, (Time.now.utc + queue_lock_expiration).to_i)
         if Resque.redis.incr(key) <= queue_limit
           true
 
