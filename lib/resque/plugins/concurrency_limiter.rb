@@ -43,7 +43,7 @@ module Resque
         lock = Resque.redis.setnx(concurrency_key("active", args), true)
         # Couldn't get the lock, requeue and will run it again later
         unless lock
-          self.resqueue(args)
+          self.requeue(args)
           return
         end
 
