@@ -1,5 +1,6 @@
 *.gem
 *.idea
+Gemfile.lock
 .bundle
 tmp
 .yardoc
